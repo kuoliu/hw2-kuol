@@ -14,17 +14,16 @@ import org.apache.uima.resource.ResourceInitializationException;
 import edu.cmu.deiis.types.*;
 
 /**
- * Description: Annotate trigrams using the Question index, Answer index
- * and regular expressions.
+ * Description: Annotate trigrams using the Question index, Answer index and regular expressions.
  */
 public class TokenTrigramAnnotator extends JCasAnnotator_ImplBase {
-  
+
   private Pattern trigramPattern;
 
   private String casProcessId;
 
   private double confidence;
-  
+
   public void initialize(UimaContext aContext) throws ResourceInitializationException {
     String str = (String) aContext.getConfigParameterValue("TrigramPattern");
     trigramPattern = Pattern.compile(str);
@@ -53,8 +52,8 @@ public class TokenTrigramAnnotator extends JCasAnnotator_ImplBase {
       annotateTrigram(str, begin, aJCas);
     }
   }
-  
-  private void annotateTrigram(String str, int begin, JCas aJCas){
+
+  private void annotateTrigram(String str, int begin, JCas aJCas) {
     int i = 0;
     Matcher m = trigramPattern.matcher(str);
     while (m.find(i)) {
